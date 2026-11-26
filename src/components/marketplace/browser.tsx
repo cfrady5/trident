@@ -110,10 +110,10 @@ export function MarketplaceBrowser({ services, categories, recommended }: { serv
                   <Link href={`/marketplace/${s.slug}`} className="mt-2 block font-display text-h2 font-bold hover:text-gold-light">{s.name}</Link>
                   <p className="mt-1 text-caption text-ivory-70">{s.summary}</p>
                 </div>
-                <dl className="grid grid-cols-3 gap-2 text-caption sm:col-span-3 sm:grid-cols-1 sm:gap-1">
+                <dl className="grid grid-cols-3 content-start gap-2 text-caption sm:col-span-3 sm:grid-cols-1 sm:gap-1">
                   <div><dt className="sr-only">Starting price</dt><dd className="font-semibold">From {money(s.starting_price_cents)}</dd></div>
                   <div><dt className="sr-only">Estimated timeline</dt><dd className="text-ivory-70">{weeks(s)}{!s.turnaround_confirmed && " (est.)"}</dd></div>
-                  <div><dt className="sr-only">Revisions</dt><dd className="text-ivory-70">{s.included_revisions} revision {s.included_revisions === 1 ? "round" : "rounds"}</dd></div>
+                  <div><dt className="sr-only">Revisions</dt><dd className="text-ivory-70">{s.included_revisions === 0 ? "No revision rounds" : `${s.included_revisions} revision ${s.included_revisions === 1 ? "round" : "rounds"}`}</dd></div>
                 </dl>
                 <div className="flex gap-2 sm:col-span-2 sm:flex-col sm:items-end">
                   <button type="button" aria-pressed={shortlist.has(s.slug)} onClick={() => shortlist.toggle(s.slug)} className={buttonClass(shortlist.has(s.slug) ? "primary" : "secondary", "sm")}>

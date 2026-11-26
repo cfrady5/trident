@@ -4,6 +4,7 @@
 .env*.local
 .env.local
 .next
+.next-build
 .next-e2e
 coverage
 next-env.d.ts
