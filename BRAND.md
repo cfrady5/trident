@@ -68,7 +68,7 @@ Make → Render → Review → Fix → Ship. Ship levels: **L1** internal draft,
 - Favicons (`src/app/icon.png`, `apple-icon.png`) are the gold mark resized onto Black (guide p.31: mark only, on Black).
 - **Dependency:** vector masters (SVG/EPS) do not exist yet (guide p.32, open decision 02). Raster is acceptable for screen at current sizes; print requires vectors.
 - Minimum size: lockup 120 px wide, mark 24 px tall (enforced in `src/components/brand/logo.tsx`). Clear space = wordmark height (lockup), ¼ mark height (mark alone).
-- **Owner decision (Nov 26, 2026):** the homepage hero (`HeroTrident`) renders the supplied mark as a field of binary digits with falling code columns and a rising gold line. This is an **approved exception** to the guide's imagery "don't" list ("binary code", p.26) and the glow/texture misuse examples (p.19), **limited to the website hero**. The artwork is not redrawn: digits are clipped to the mark's own alpha. Do not reuse the treatment on print, social, decks or documents without a new decision; update the guide to record it.
+- **Owner decision (Nov 26, 2026):** the homepage hero (`HeroTrident`) renders the supplied mark as a field of binary digits on a binary-code staff (handle) reaching down to the baseline, with falling code columns and a rising gold line. The staff is an added element beneath the unaltered mark. This is an **approved exception** to the guide's imagery "don't" list ("binary code", p.26) and the glow/texture misuse examples (p.19), **limited to the website hero**. The artwork is not redrawn: digits are clipped to the mark's own alpha. Do not reuse the treatment on print, social, decks or documents without a new decision; update the guide to record it.
 - Gold logo never on a light ground. One logo per surface. No shadows, glows, outlines, rotation, recolouring or busy backgrounds.
 
 ## Color (guide p.20–22)
@@ -128,6 +128,7 @@ Fonts are self-hosted from npm (`@fontsource*`, SIL OFL) so no request goes to G
 | Date | Decision | Scope |
 |---|---|---|
 | 2026-11-26 | Binary-code texture and animated light on the mark | Website homepage hero only |
+| 2026-11-26 | Staff (handle) added beneath the mark in the hero | Website homepage hero only; not part of the logo |
 
 ## Open decisions (guide p.32) and repository status
 

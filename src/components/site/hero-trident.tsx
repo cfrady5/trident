@@ -2,13 +2,15 @@
 
 /**
  * Hero visual: the supplied Trident mark rendered as a field of binary digits,
- * with faint falling code columns behind it and a gold line that periodically
+ * set on a staff (handle) of binary code that reaches down to the award
+ * baseline, with faint falling code columns behind it and a gold line that periodically
  * rises from the award baseline (A) to the market (B), lighting the code as it
  * passes.
  *
  * Brand notes (BRAND.md → Owner decisions):
- * - The trident is the supplied artwork. The digit texture is clipped to the
- *   mark's own alpha channel; the shape is never redrawn.
+ * - The trident head is the supplied artwork. The digit texture is clipped to
+ *   the mark's own alpha channel; the shape is never redrawn. The staff is a
+ *   separate element drawn beneath it (owner decision, Nov 26, 2026).
  * - Binary texture is an owner-approved exception (Nov 26, 2026) to the guide's
  *   imagery "don't" list (p.26). Colors stay within the palette.
  * - Motion: 30 fps cap, paused off-screen, static frame under
@@ -24,6 +26,8 @@ const RISE_MS = 2500;
 const START_DELAY_MS = 1200;
 const BASELINE = 0.88; // A · The award (fraction of frame height)
 const TOP = 0.03; // B · The market
+// Mark box (fractions of the frame). Raised to leave room for the staff below.
+const MARK_BOX = { left: 0.18, width: 0.64, top: 0.06, height: 0.52 };
 
 // Palette (BRAND.md): Gold Light, Gold, Gold Deep, Bronze, plus a warm highlight.
 const GOLD_LIGHT = "#FBD474";
@@ -54,6 +58,8 @@ export function HeroTrident({ className }: { className?: string }) {
     let w = 0, h = 0, dpr = 1, cell = 10;
     let markBox = { x: 0, y: 0, w: 0, h: 0 };
     let grid: string[][] = [];
+    let staff: string[][] = [];
+    let staffBox = { x: 0, y: 0, w: 0, h: 0 };
     let columns: Column[] = [];
     let raf = 0, last = 0, visible = true, stopped = false;
     const t0 = performance.now();
@@ -65,13 +71,19 @@ export function HeroTrident({ className }: { className?: string }) {
       w = rect.width; h = rect.height;
       for (const c of [canvas!, layer]) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
       canvas!.style.width = `${w}px`; canvas!.style.height = `${h}px`;
-      // Same box as the static fallback: inset 16% horizontally, 14%..86% vertically, object-contain.
-      const bx = w * 0.16, bw = w * 0.68, by = h * 0.14, bh = h * 0.72;
+      // Same box as the static fallback (MARK_BOX), object-contain.
+      const bx = w * MARK_BOX.left, bw = w * MARK_BOX.width, by = h * MARK_BOX.top, bh = h * MARK_BOX.height;
       const mw = Math.min(bw, bh * MARK_RATIO), mh = mw / MARK_RATIO;
       markBox = { x: bx + (bw - mw) / 2, y: by + (bh - mh) / 2, w: mw, h: mh };
       cell = Math.max(7, Math.round(mw / 34));
       const cols = Math.ceil(mw / cell), rows = Math.ceil(mh / cell);
       grid = Array.from({ length: rows }, () => Array.from({ length: cols }, bit));
+      // Staff: a column ~16% of the mark's width, from the mark's bottom point
+      // down to the award baseline.
+      const staffCols = Math.max(3, Math.round((mw * 0.16) / cell));
+      const sTop = markBox.y + markBox.h - cell * 0.4; // meets the mark's bottom point
+      staffBox = { x: markBox.x + mw / 2 - (staffCols * cell) / 2, y: sTop, w: staffCols * cell, h: h * BASELINE - sTop - cell * 0.5 };
+      staff = Array.from({ length: Math.floor(staffBox.h / cell) }, () => Array.from({ length: staffCols }, bit));
       const count = Math.round(w / 22);
       columns = Array.from({ length: count }, (_, i) => ({
         x: ((i + 0.5) / count) * w + (Math.random() - 0.5) * 8,
@@ -116,7 +128,29 @@ export function HeroTrident({ className }: { className?: string }) {
       }
       ctx!.globalAlpha = 1;
 
-      // 2. Binary texture clipped to the supplied mark's alpha.
+      // 2. Staff: binary column from the mark down to the award baseline.
+      ctx!.font = `600 ${cell * 1.02}px "IBM Plex Mono", Consolas, monospace`;
+      for (let r = 0; r < staff.length; r++) {
+        const y = staffBox.y + (r + 0.5) * cell;
+        const f = r / staff.length; // 0 at the head, 1 at the baseline
+        let color = f < 0.5 ? GOLD : GOLD_DEEP;
+        let alpha = 0.95 - f * 0.45;
+        if (sy !== null) {
+          const d = y - sy;
+          if (d >= -cell && d < cell * 1.5) { color = HIGHLIGHT; alpha = 1; }
+          else if (d >= 0 && d < cell * 6) { color = GOLD_LIGHT; alpha = Math.max(alpha, 0.9); }
+        }
+        ctx!.fillStyle = color;
+        ctx!.globalAlpha = alpha;
+        const row = staff[r]!;
+        for (let c = 0; c < row.length; c++) {
+          if (!reduced && Math.random() < 0.006) row[c] = bit();
+          ctx!.fillText(row[c]!, staffBox.x + (c + 0.5) * cell, y);
+        }
+      }
+      ctx!.globalAlpha = 1;
+
+      // 3. Binary texture clipped to the supplied mark's alpha.
       if (mark.complete && mark.naturalWidth) {
         lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         lctx.globalCompositeOperation = "source-over";
@@ -153,7 +187,7 @@ export function HeroTrident({ className }: { className?: string }) {
         ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
-      // 3. Rising line across the frame with a short trail.
+      // 4. Rising line across the frame with a short trail.
       if (sy !== null) {
         const trail = ctx!.createLinearGradient(0, sy, 0, sy + 40);
         trail.addColorStop(0, "rgba(230,167,59,0.10)");
@@ -193,7 +227,7 @@ export function HeroTrident({ className }: { className?: string }) {
 
   const lines = Array.from({ length: 9 }, (_, i) => `${(i + 1) * 10}%`);
   return (
-    <div ref={wrapRef} className={`relative aspect-[4/5] w-full ${className ?? ""}`} role="img" aria-label="The Trident mark rendered in binary code, with a gold line rising from the award to the market">
+    <div ref={wrapRef} className={`relative aspect-[4/5] w-full ${className ?? ""}`} role="img" aria-label="The Trident mark and its staff rendered in binary code, with a gold line rising from the award to the market">
       <div aria-hidden className="absolute inset-0">
         {lines.map((p) => <span key={`v${p}`} className="absolute top-0 bottom-0 w-px bg-line/60" style={{ left: p }} />)}
         {lines.map((p) => <span key={`h${p}`} className="absolute left-0 right-0 h-px bg-line/60" style={{ top: p }} />)}
@@ -202,7 +236,8 @@ export function HeroTrident({ className }: { className?: string }) {
         <span className="label absolute right-0 top-[3%] text-[10px] text-gold-light">B · The market</span>
       </div>
       {/* Static fallback (no JS / before first frame). */}
-      <div aria-hidden className={`absolute inset-x-[16%] top-[14%] bottom-[14%] transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}>
+      <div aria-hidden className={`absolute transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
+        style={{ left: `${MARK_BOX.left * 100}%`, width: `${MARK_BOX.width * 100}%`, top: `${MARK_BOX.top * 100}%`, height: `${MARK_BOX.height * 100}%` }}>
         <Image src={MARK} alt="" fill priority sizes="(min-width: 1024px) 340px, 60vw" className="object-contain" />
       </div>
       <canvas ref={canvasRef} aria-hidden className="absolute inset-0" />
