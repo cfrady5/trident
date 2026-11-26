@@ -22,11 +22,10 @@ export const site = {
 
 export const nav = [
   { href: "/method", label: "Method" },
+  { href: "/services", label: "Services" },
   { href: "/marketplace", label: "Marketplace" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/industries", label: "Industries" },
   { href: "/insights", label: "Insights" },
-  { href: "/about", label: "About" },
 ];
 
 export interface PillarContent {

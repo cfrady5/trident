@@ -8,7 +8,7 @@ test.describe("public website", () => {
     await expect(page.getByRole("heading", { name: "Awardable is not the same as adopted." })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Innovation deserves a market." })).toBeVisible();
     await expect(page.getByText(/not affiliated with, endorsed by or acting on behalf of any government agency/).first()).toBeVisible();
-    await page.getByRole("link", { name: /Assess your commercial readiness/ }).first().click();
+    await page.getByRole("link", { name: /Assess your commercial readiness/i }).first().click();
     await expect(page).toHaveURL(/\/assessment$/);
   });
 

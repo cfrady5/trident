@@ -15,34 +15,40 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden border-b border-line bg-black lg:min-h-[760px]">
+      {/* Hero — owner-approved treatment (BRAND.md → Owner decisions). */}
+      <section className="relative isolate overflow-hidden bg-black lg:min-h-[calc(100svh-72px)]">
         <HeroTrident />
-        {/* Shading so the copy stays readable over the animation. */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-transparent lg:bg-gradient-to-r lg:from-black/70 lg:from-20% lg:via-black/30 lg:via-45% lg:to-transparent lg:to-60%" />
-        <Container className="relative grid items-center pb-[min(50vh,560px)] pt-20 md:pt-28 lg:min-h-[760px] lg:grid-cols-12 lg:pb-28">
+        {/* Light shading only where the copy sits (mobile: top; desktop: left). */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-transparent lg:bg-gradient-to-r lg:from-black/60 lg:via-black/10 lg:via-40% lg:to-transparent lg:to-55%" />
+        <div className="relative mx-auto grid max-w-[1440px] items-center px-5 pb-[min(50vh,560px)] pt-16 sm:px-8 md:pt-24 lg:min-h-[calc(100svh-72px)] lg:grid-cols-12 lg:px-12 lg:pb-32 lg:pt-16">
           <div className="lg:col-span-6">
-            <Eyebrow>Technology commercialization &amp; creative agency</Eyebrow>
-            <h1 className="mt-6 font-display text-[3.25rem] font-bold leading-[1] tracking-[-0.02em] sm:text-[4.25rem] lg:text-[5.5rem]">
-              Beyond the <span className="text-gold">Award.</span>
+            <p className="flex items-center gap-3 text-[0.8rem] font-medium uppercase tracking-[0.18em] text-ivory sm:text-[0.95rem]">
+              <span aria-hidden className="h-px w-7 bg-gold" />Technology commercialization &amp; creative agency
+            </p>
+            <h1 className="mt-8 font-display text-[3.6rem] font-semibold leading-[0.98] tracking-[-0.03em] sm:text-[5rem] lg:text-[6.25rem]">
+              Beyond<br />the <span className="bg-gradient-to-br from-gold-light via-gold to-gold-deep bg-clip-text text-transparent">Award.</span>
             </h1>
-            <p className="mt-8 max-w-xl text-body-l text-ivory-70 md:text-[1.25rem]">
+            <p className="mt-7 max-w-[34rem] text-body-l text-ivory md:text-[1.4rem] md:leading-[1.45]">
               Your technology has earned validation. Now build the positioning, presence and demand it needs to compete in the market.
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/assessment" size="lg">Assess your commercial readiness <Arrow /></ButtonLink>
-              <ButtonLink href="/marketplace" variant="secondary" size="lg">Explore our capabilities</ButtonLink>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link href="/assessment" className="inline-flex h-14 items-center justify-center gap-3 whitespace-nowrap rounded-md bg-gradient-to-br from-gold-light via-gold to-gold-deep px-5 text-[15px] font-semibold sm:px-7 sm:text-base text-black shadow-[0_8px_30px_rgba(230,167,59,0.25)] transition-[filter] hover:brightness-110">
+                Assess Your Commercial Readiness <Arrow />
+              </Link>
+              <Link href="/marketplace" className="inline-flex h-14 items-center justify-center whitespace-nowrap rounded-md border border-gold-light/70 px-5 text-[15px] font-semibold sm:px-7 sm:text-base text-ivory transition-colors hover:bg-gold/10">
+                Explore Our Capabilities
+              </Link>
             </div>
-            <ul className="mt-14 grid max-w-xl grid-cols-1 gap-5 sm:grid-cols-3" aria-label="The method">
+            <ul className="mt-14 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-3" aria-label="The method">
               {pillars.map((p) => (
-                <li key={p.key} className="border-l border-gold-deep pl-4">
-                  <Link href={`/services/${p.key}`} className="font-display text-h3 font-bold hover:text-gold-light">{p.name}</Link>
-                  <p className="mt-0.5 text-caption text-ivory-70">{p.line}</p>
+                <li key={p.key} className="border-l border-gold pl-5">
+                  <Link href={`/services/${p.key}`} className="font-display text-[1.3rem] font-semibold hover:text-gold-light">{p.name}</Link>
+                  <p className="mt-1 text-body text-ivory-70">{p.line}</p>
                 </li>
               ))}
             </ul>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Problem */}

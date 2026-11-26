@@ -131,6 +131,7 @@ Fonts are self-hosted from npm (`@fontsource*`, SIL OFL) so no request goes to G
 | 2026-11-26 | Staff (handle) added beneath the mark in the hero | Website homepage hero only; not part of the logo |
 | 2026-11-26 | Hero animation spans the full hero: code rain, glow and gold dot field | Website homepage hero only |
 | 2026-11-26 | Hero trident is a custom classic-trident **illustration** (arrowhead prongs, curved crossbar, staff) in binary code, replacing the mark in the hero. Brand standards altered for this element by the owner | Website homepage hero only. **Not the logo**: the supplied logo artwork remains the only logo and is still used everywhere else |
+| 2026-11-26 | Homepage hero and header restyled to match the owner's reference: header shows the mark beside the TRIDENT wordmark (cropped unaltered from the supplied lockup), nav Method · Services · Marketplace · Industries · Insights with Log In / Apply Now; hero uses a gold-gradient "Award.", gradient primary button with rounded corners, title-case CTA labels, ivory body text | Header (site-wide) and homepage hero. Pricing and About moved to the footer and mobile menu |
 
 ## Open decisions (guide p.32) and repository status
 

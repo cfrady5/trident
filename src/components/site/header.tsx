@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "../brand/logo";
-import { ButtonLink } from "../ui/button";
+import { Arrow, ButtonLink } from "../ui/button";
 import { cn } from "../ui/cn";
 import { nav } from "@/content/site";
 
@@ -15,23 +15,26 @@ export function Header({ signedIn }: { signedIn: boolean }) {
   const open = openOn === pathname;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-black/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 bg-black/85 backdrop-blur-sm">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-gold-light focus:px-3 focus:py-2 focus:text-black">Skip to content</a>
-      <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-5 sm:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label="Trident home">
-          <Logo variant="mark-gold" width={22} priority />
-          <span className="label hidden border-l border-line pl-3 text-ivory-70 lg:inline">Beyond the Award.</span>
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <Link href="/" className="flex items-center gap-4" aria-label="Trident home">
+          <span className="flex items-center gap-3">
+            <Logo variant="mark-gold" width={30} priority />
+            <Logo variant="wordmark-gold" width={132} priority className="hidden sm:block" />
+          </span>
+          <span className="label hidden border-l border-line pl-4 text-ivory xl:inline">Beyond the Award.</span>
         </Link>
-        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-9 md:flex">
           {nav.map((n) => (
-            <Link key={n.href} href={n.href} className={cn("text-caption transition-colors hover:text-ivory", pathname.startsWith(n.href) ? "text-ivory" : "text-ivory-70")} aria-current={pathname.startsWith(n.href) ? "page" : undefined}>
+            <Link key={n.href} href={n.href} className={cn("text-caption transition-colors hover:text-gold-light", pathname.startsWith(n.href) ? "text-gold-light" : "text-ivory")} aria-current={pathname.startsWith(n.href) ? "page" : undefined}>
               {n.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-4 md:flex">
-          <Link href={signedIn ? "/portal" : "/login"} className="text-caption text-ivory-70 hover:text-ivory">{signedIn ? "Portal" : "Sign in"}</Link>
-          <ButtonLink href="/assessment" size="sm">Assess readiness</ButtonLink>
+        <div className="hidden items-center gap-6 md:flex">
+          <Link href={signedIn ? "/portal" : "/login"} className="text-caption text-ivory hover:text-gold-light">{signedIn ? "Portal" : "Log In"}</Link>
+          <Link href="/apply" className="inline-flex h-10 items-center gap-2 rounded-md border border-gold px-4 text-caption font-medium text-gold-light transition-colors hover:bg-gold/10">Apply Now <Arrow /></Link>
         </div>
         <button type="button" className="flex h-10 w-10 items-center justify-center md:hidden" aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpenOn(open ? null : pathname)}>
           <svg width="20" height="20" viewBox="0 0 20 20" stroke="currentColor" strokeWidth="1.5" aria-hidden>
@@ -44,8 +47,10 @@ export function Header({ signedIn }: { signedIn: boolean }) {
           {nav.map((n) => (
             <Link key={n.href} href={n.href} className="block border-b border-line py-3 text-body">{n.label}</Link>
           ))}
-          <Link href={signedIn ? "/portal" : "/login"} className="block border-b border-line py-3 text-body text-ivory-70">{signedIn ? "Portal" : "Sign in"}</Link>
-          <ButtonLink href="/assessment" className="mt-5 w-full">Assess your commercial readiness</ButtonLink>
+          <Link href="/pricing" className="block border-b border-line py-3 text-body">Pricing</Link>
+          <Link href="/about" className="block border-b border-line py-3 text-body">About</Link>
+          <Link href={signedIn ? "/portal" : "/login"} className="block border-b border-line py-3 text-body text-ivory-70">{signedIn ? "Portal" : "Log In"}</Link>
+          <ButtonLink href="/apply" className="mt-5 w-full">Apply Now</ButtonLink>
         </nav>
       )}
     </header>

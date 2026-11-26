@@ -8,7 +8,7 @@ import Image from "next/image";
  * Versions (guide p.17): gold on Black (primary), ivory on Carbon (reversed),
  * black on Ivory/Gold. Minimum: lockup 120px wide, mark 24px tall.
  */
-type Variant = "lockup-gold" | "lockup-ivory" | "lockup-black" | "mark-gold" | "mark-black";
+type Variant = "lockup-gold" | "lockup-ivory" | "lockup-black" | "mark-gold" | "mark-black" | "wordmark-gold";
 
 const SIZES: Record<Variant, [number, number]> = {
   "lockup-gold": [787, 563],
@@ -16,11 +16,13 @@ const SIZES: Record<Variant, [number, number]> = {
   "lockup-black": [787, 563],
   "mark-gold": [370, 453],
   "mark-black": [370, 453],
+  // Cropped unaltered from lockup-gold.png (owner decision: horizontal header lockup).
+  "wordmark-gold": [787, 72],
 };
 
 export function Logo({ variant = "mark-gold", width, className, priority }: { variant?: Variant; width: number; className?: string; priority?: boolean }) {
   const [w, h] = SIZES[variant];
-  const min = variant.startsWith("lockup") ? 120 : 20;
+  const min = variant.startsWith("lockup") ? 120 : variant.startsWith("wordmark") ? 90 : 20;
   const finalWidth = Math.max(width, min);
   return (
     <Image src={`/brand/${variant}.png`} alt="Trident" width={finalWidth} height={Math.round((finalWidth * h) / w)} className={className} priority={priority} />
