@@ -20,7 +20,7 @@ export function Header({ signedIn }: { signedIn: boolean }) {
       <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between px-5 sm:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Trident home">
           <Logo variant="mark-gold" width={22} priority />
-          <span className="label hidden text-ivory-70 lg:inline">Technology commercialization &amp; creative agency</span>
+          <span className="label hidden border-l border-line pl-3 text-ivory-70 lg:inline">Beyond the Award.</span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
           {nav.map((n) => (

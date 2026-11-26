@@ -32,6 +32,8 @@ _Last updated: 2026-11-26 · Branch `claude/trident-commercialization-platform-p
 **Trident Command**
 - Overview with real calculated metrics and "No data yet" handling, attention queue, tasks, activity; applications (filters, review decisions, file release/hold/delete, research results, history); opportunities (table + kanban, filters, saved views, inline stage changes); company profile (facts with provenance/verification/approval, credential verification, opportunity editor with sales qualification, COI review gate, notes/tasks); inquiries; intelligence review queue; assessments; catalog & pricing editor (finance/admin, audited); finance actuals + scenario model; automations (jobs with retry, AI usage, event catalog); team (grant/revoke roles); settings (integration status, data requests).
 
+**Hero update (Nov 26):** animated hero using the supplied mark with a rising gold line (`HeroTrident`), Position/Build/Activate row under the CTAs, header shows the tagline. Animation is a PROPOSAL pending brand-owner approval.
+
 ## Architectural decisions
 
 | Decision | Why |

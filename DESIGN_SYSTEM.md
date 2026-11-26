@@ -60,7 +60,8 @@ Command uses 13 px table text and 10.5 px mono headers for density (PROVISIONAL;
 | `Container`, `Eyebrow`, `Notice`, `Pill`, `EmptyState`, `Provisional` | `ui/primitives.tsx` | `Notice` is the single pattern for info/warning/error/success (left rule, `role=alert` for errors) |
 | `Field`, `Input`, `Textarea`, `Select`, `Checkbox` | `ui/form.tsx` | Visible labels, `(optional)` markers, `aria-describedby` for help and errors, `aria-invalid` |
 | `Section`, `PageHeader` | `site/` | Editorial section pattern; `tone` = black / carbon / ivory |
-| `MethodDiagram` | `site/method-diagram.tsx` | Abstract stems A→B. **Not a logo derivative.** Single travelling highlight; stops under reduced motion |
+| `HeroTrident` | `site/hero-trident.tsx` | Homepage hero. Supplied gold mark on a hairline grid; a Gold Light line rises from "A · The award" to "B · The market" every 9 s (2.5 s rise), lighting the mark only as it passes (CSS mask of the mark's own alpha). No redraw, no permanent glow, no binary texture. Off under reduced motion. **PROPOSAL: animated logo treatment needs brand-owner approval** |
+| `MethodDiagram` | `site/method-diagram.tsx` | Abstract stems A→B. **Not a logo derivative.** Currently unused (replaced in the hero by `HeroTrident`) |
 | Command `PageTitle`, `Metric`, `Table/Th/Td`, `Panel` | `command/ui.tsx` | Dense operational UI; `NoData` for metrics without inputs |
 
 ## States

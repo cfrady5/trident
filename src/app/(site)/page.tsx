@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ButtonLink, Arrow } from "@/components/ui/button";
 import { Container, Eyebrow } from "@/components/ui/primitives";
-import { MethodDiagram } from "@/components/site/method-diagram";
+import { HeroTrident } from "@/components/site/hero-trident";
 import { Section } from "@/components/site/section";
 import { audiences, engagementModels, pillars, qualitySteps, site } from "@/content/site";
 import { formatPrice, listServices } from "@/lib/catalog";
@@ -21,7 +21,7 @@ export default async function HomePage() {
           <div className="lg:col-span-7">
             <Eyebrow>Technology commercialization &amp; creative agency</Eyebrow>
             <h1 className="mt-6 font-display text-[3.25rem] font-bold leading-[1] tracking-[-0.02em] sm:text-[4.25rem] lg:text-[5.5rem]">
-              Beyond the Award.
+              Beyond the <span className="text-gold">Award.</span>
             </h1>
             <p className="mt-8 max-w-xl text-body-l text-ivory-70 md:text-[1.25rem]">
               Your technology has earned validation. Now build the positioning, presence and demand it needs to compete in the market.
@@ -30,9 +30,17 @@ export default async function HomePage() {
               <ButtonLink href="/assessment" size="lg">Assess your commercial readiness <Arrow /></ButtonLink>
               <ButtonLink href="/marketplace" variant="secondary" size="lg">Explore our capabilities</ButtonLink>
             </div>
+            <ul className="mt-14 grid max-w-xl grid-cols-1 gap-5 sm:grid-cols-3" aria-label="The method">
+              {pillars.map((p) => (
+                <li key={p.key} className="border-l border-gold-deep pl-4">
+                  <Link href={`/services/${p.key}`} className="font-display text-h3 font-bold hover:text-gold-light">{p.name}</Link>
+                  <p className="mt-0.5 text-caption text-ivory-70">{p.line}</p>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="lg:col-span-5">
-            <MethodDiagram className="mx-auto w-full max-w-[460px]" />
+            <HeroTrident className="mx-auto max-w-[440px]" />
           </div>
         </Container>
       </section>

@@ -68,6 +68,7 @@ Make → Render → Review → Fix → Ship. Ship levels: **L1** internal draft,
 - Favicons (`src/app/icon.png`, `apple-icon.png`) are the gold mark resized onto Black (guide p.31: mark only, on Black).
 - **Dependency:** vector masters (SVG/EPS) do not exist yet (guide p.32, open decision 02). Raster is acceptable for screen at current sizes; print requires vectors.
 - Minimum size: lockup 120 px wide, mark 24 px tall (enforced in `src/components/brand/logo.tsx`). Clear space = wordmark height (lockup), ¼ mark height (mark alone).
+- **PROPOSAL (Nov 2026):** homepage hero animates a transient light line through the supplied mark (`HeroTrident`). The artwork is unaltered; the effect is masked to the mark and disappears between passes. Needs brand-owner sign-off against the "no glows" misuse rule.
 - Gold logo never on a light ground. One logo per surface. No shadows, glows, outlines, rotation, recolouring or busy backgrounds.
 
 ## Color (guide p.20–22)

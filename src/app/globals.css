@@ -91,6 +91,31 @@
   }
 }
 
+/*
+ * Hero trident rise (src/components/site/hero-trident.tsx). 9s cycle: the line
+ * rises for ~2.5s (0-28%), then rests, so it reads as occasional. The mark
+ * sweep is timed to the frame line: it enters the mark's box at 0.6% of the
+ * cycle and reaches its top at 24.1% (mark spans 14%-86% of the frame, line 88% -> 2%).
+ */
+@keyframes trident-rise {
+  0% { transform: translateY(0); opacity: 0; }
+  2% { opacity: 1; }
+  28% { transform: translateY(-100%); opacity: 1; }
+  32% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+@keyframes trident-rise-mark {
+  /* Edge matches the frame line exactly: -100% at 24.1%, trail clears at 26.9% */
+  0%, 0.6% { transform: translateY(0); }
+  26.9% { transform: translateY(-112%); }
+  100% { transform: translateY(-112%); }
+}
+.trident-rise { animation: trident-rise 9s linear 1.2s infinite both; }
+.trident-rise-mark { animation: trident-rise-mark 9s linear 1.2s infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .trident-rise, .trident-rise-mark { animation: none; opacity: 0; }
+}
+
 @layer components {
   .label {
     font-family: var(--font-mono);
