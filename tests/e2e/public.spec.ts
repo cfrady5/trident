@@ -12,6 +12,33 @@ test.describe("public website", () => {
     await expect(page).toHaveURL(/\/assessment$/);
   });
 
+  test("binary trident hero is decorative, renders and never blocks the copy", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(e.message));
+    await page.goto("/");
+    const hero = page.getByTestId("binary-trident-hero");
+    const canvas = hero.locator("canvas");
+    await expect(canvas).toHaveAttribute("aria-hidden", "true");
+    await expect(canvas).toHaveCSS("pointer-events", "none");
+    await page.waitForFunction(() => {
+      const c = document.querySelector<HTMLCanvasElement>("[data-testid=binary-trident-hero] canvas");
+      return !!c && c.width > 300;
+    });
+    // Copy stays clickable on top of the animation.
+    await page.getByRole("link", { name: "Explore Our Capabilities" }).click();
+    await expect(page).toHaveURL(/\/marketplace$/);
+    expect(errors).toEqual([]);
+  });
+
+  test("hero respects reduced motion", async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: "reduce" });
+    const page = await context.newPage();
+    await page.goto("/");
+    await expect(page.getByRole("heading", { level: 1, name: "Beyond the Award." })).toBeVisible();
+    await page.waitForFunction(() => (document.querySelector<HTMLCanvasElement>("[data-testid=binary-trident-hero] canvas")?.width ?? 0) > 300);
+    await context.close();
+  });
+
   test("every public page renders without errors", async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));

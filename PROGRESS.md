@@ -34,6 +34,8 @@ _Last updated: 2026-11-26 · Branch `claude/trident-commercialization-platform-p
 
 **Hero update (Nov 26):** full-bleed animated canvas hero (`HeroTrident`) and header restyled to the owner's reference: classic-trident illustration (owner decision; not the logo) in glowing binary code, rolling dot landscape, code streams; header with mark + wordmark, Log In / Apply Now, gold line rising from award to market. Binary texture is an owner-approved exception to the guide, website hero only (BRAND.md). Position/Build/Activate row under the CTAs; header shows the tagline.
 
+**Hero refinement (Nov 26):** `BinaryTridentHero` replaces `HeroTrident`. The official mark silhouette is now made entirely of binary characters (invisible mask from the supplied artwork; palette colors only), with staged formation, ambient behaviours, restrained cursor interaction, a binary landscape, four presets and a dev tuning panel. Dev-only comparison route `/hero-lab` (404 in production). Header: larger official mark + wordmark, single solid Gold Apply Now, nav collapses below 1024 px. QA captures at 1920×1080, 1440×900, 834×1112 and 390×844 plus a recording per preset; unit tests (determinism, palette, presets) and e2e tests (decorative canvas, clickable copy, reduced motion). Open: owner to choose a preset (default 04 Living Intelligence); supply SVG master to replace the raster mask.
+
 ## Architectural decisions
 
 | Decision | Why |
