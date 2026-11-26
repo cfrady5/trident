@@ -11,4 +11,5 @@ next-env.d.ts
 node_modules
 out
 playwright-report
+screenshots
 test-results

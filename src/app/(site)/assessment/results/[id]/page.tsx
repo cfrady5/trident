@@ -46,7 +46,7 @@ export default async function ResultsPage({ params, searchParams }: PageProps<"/
             <div className="space-y-3 text-ivory-70 md:col-span-8">
               <p className="text-body-l text-ivory">
                 {r.overall === null ? "There isn't enough information to calculate an overall score." :
-                  `Based on your answers, ${a.company_name} is at a ${BAND_LABELS[r.band!].toLowerCase()} stage of commercial readiness. ${r.priorities.length ? `The highest-impact improvement is: ${r.priorities[0]!.recommendation!.charAt(0).toLowerCase()}${r.priorities[0]!.recommendation!.slice(1)}` : "No major gaps were identified in the areas you answered."}`}
+                  `Based on your answers, ${a.company_name} is at ${/^[aeiou]/i.test(BAND_LABELS[r.band!]) ? "an" : "a"} ${BAND_LABELS[r.band!].toLowerCase()} stage of commercial readiness. ${r.priorities.length ? `The highest-impact improvement is: ${r.priorities[0]!.recommendation!.charAt(0).toLowerCase()}${r.priorities[0]!.recommendation!.slice(1)}` : "No major gaps were identified in the areas you answered."}`}
               </p>
               <p>Completeness {Math.round(r.completeness * 100)}% · Confidence {r.confidence} · {r.missing.length} item(s) not answered</p>
               <div className="flex flex-wrap gap-5 pt-2"><PrintButton /><a className="text-caption text-gold-light" href={`/api/assessments/${a.id}?t=${encodeURIComponent(String(sp.t))}`}>Download JSON</a></div>
