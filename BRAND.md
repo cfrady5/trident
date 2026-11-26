@@ -68,7 +68,7 @@ Make → Render → Review → Fix → Ship. Ship levels: **L1** internal draft,
 - Favicons (`src/app/icon.png`, `apple-icon.png`) are the gold mark resized onto Black (guide p.31: mark only, on Black).
 - **Dependency:** vector masters (SVG/EPS) do not exist yet (guide p.32, open decision 02). Raster is acceptable for screen at current sizes; print requires vectors.
 - Minimum size: lockup 120 px wide, mark 24 px tall (enforced in `src/components/brand/logo.tsx`). Clear space = wordmark height (lockup), ¼ mark height (mark alone).
-- **PROPOSAL (Nov 2026):** homepage hero animates a transient light line through the supplied mark (`HeroTrident`). The artwork is unaltered; the effect is masked to the mark and disappears between passes. Needs brand-owner sign-off against the "no glows" misuse rule.
+- **Owner decision (Nov 26, 2026):** the homepage hero (`HeroTrident`) renders the supplied mark as a field of binary digits with falling code columns and a rising gold line. This is an **approved exception** to the guide's imagery "don't" list ("binary code", p.26) and the glow/texture misuse examples (p.19), **limited to the website hero**. The artwork is not redrawn: digits are clipped to the mark's own alpha. Do not reuse the treatment on print, social, decks or documents without a new decision; update the guide to record it.
 - Gold logo never on a light ground. One logo per surface. No shadows, glows, outlines, rotation, recolouring or busy backgrounds.
 
 ## Color (guide p.20–22)
@@ -122,6 +122,12 @@ Fonts are self-hosted from npm (`@fontsource*`, SIL OFL) so no request goes to G
 **"Validated"** means a competitive selection (an award, or an assessment as awardable). Not a certification, not an endorsement. Use only beside a named, dated credential.
 
 **Standard disclaimer** (footer, any material naming programs): *Trident is an independent company. It is not affiliated with, endorsed by or acting on behalf of any government agency or program.*
+
+## Owner decisions that differ from the guide
+
+| Date | Decision | Scope |
+|---|---|---|
+| 2026-11-26 | Binary-code texture and animated light on the mark | Website homepage hero only |
 
 ## Open decisions (guide p.32) and repository status
 
