@@ -32,7 +32,7 @@ _Last updated: 2026-11-26 · Branch `claude/trident-commercialization-platform-p
 **Trident Command**
 - Overview with real calculated metrics and "No data yet" handling, attention queue, tasks, activity; applications (filters, review decisions, file release/hold/delete, research results, history); opportunities (table + kanban, filters, saved views, inline stage changes); company profile (facts with provenance/verification/approval, credential verification, opportunity editor with sales qualification, COI review gate, notes/tasks); inquiries; intelligence review queue; assessments; catalog & pricing editor (finance/admin, audited); finance actuals + scenario model; automations (jobs with retry, AI usage, event catalog); team (grant/revoke roles); settings (integration status, data requests).
 
-**Hero update (Nov 26):** full-bleed animated canvas hero (`HeroTrident`, glow and gold dot field added): supplied mark rendered in binary digits on a binary staff, falling code columns, gold line rising from award to market. Binary texture is an owner-approved exception to the guide, website hero only (BRAND.md). Position/Build/Activate row under the CTAs; header shows the tagline.
+**Hero update (Nov 26):** full-bleed animated canvas hero (`HeroTrident`): custom classic-trident illustration (owner decision; not the logo) built from binary code with streaming digits, glow, staff and gold dot field, falling code columns, gold line rising from award to market. Binary texture is an owner-approved exception to the guide, website hero only (BRAND.md). Position/Build/Activate row under the CTAs; header shows the tagline.
 
 ## Architectural decisions
 
