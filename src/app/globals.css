@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/inter";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+
+/*
+ * Trident design tokens. Source: Trident Brand Guidelines v2.1 (DRAFT).
+ * See DESIGN_SYSTEM.md for roles, contrast pairings and provisional items.
+ */
+@theme {
+  --color-black: #000000;
+  --color-carbon: #15130f;
+  --color-carbon-2: #1d1a15; /* PROVISIONAL: raised Carbon for app surfaces */
+  --color-gold-light: #fbd474;
+  --color-gold: #e6a73b;
+  --color-gold-deep: #c5851b;
+  --color-bronze: #996304;
+  --color-ivory: #f7f3ea;
+  --color-ivory-2: #ede6d6; /* PROVISIONAL: Ivory panel tint seen in guide p.4/15 */
+  --color-ivory-70: #adaaa4; /* Ivory 70% on Black/Carbon: captions, secondary text */
+  --color-ivory-50: #7c7a75; /* Ivory 50%: disabled / large labels on Black only */
+  --color-line: #2a2620; /* hairline on dark (decorative, non-text) */
+  --color-line-light: #d9d2c3; /* hairline on Ivory (decorative, non-text) */
+  --color-danger: #e0796b; /* PROVISIONAL utility: error text on dark */
+  --color-danger-deep: #9b2c1f; /* PROVISIONAL utility: error text on Ivory */
+  --color-success: #9cc59a; /* PROVISIONAL utility */
+
+  --font-display: "Space Grotesk Variable", "Arial", sans-serif;
+  --font-sans: "Inter Variable", "Arial", sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", "Courier New", monospace;
+
+  --text-display: 4.25rem;
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.02em;
+  --text-h1: 2.5rem;
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.3;
+  --text-body-l: 1.125rem;
+  --text-body-l--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.5;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.12em;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --animate-trace: trace 6s linear infinite;
+  @keyframes trace {
+    0% { stroke-dashoffset: 494; }
+    100% { stroke-dashoffset: 0; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-black);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-black);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold-light);
+    outline-offset: 2px;
+  }
+  .surface-light :focus-visible {
+    outline-color: var(--color-black);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: var(--text-label);
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .gradient-gold {
+    background-image: linear-gradient(135deg, #fbd474 0%, #e6a73b 50%, #996304 100%);
+  }
+  .prose-trident p { margin: 0 0 1.1em; }
+  .prose-trident h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.01em; margin: 2em 0 0.6em; }
+  .prose-trident ul { margin: 0 0 1.1em; padding-left: 0; list-style: none; }
+  .prose-trident li { position: relative; padding-left: 1.25em; margin-bottom: 0.4em; }
+  .prose-trident li::before { content: "—"; position: absolute; left: 0; color: var(--color-gold); }
+}
