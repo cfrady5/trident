@@ -16,9 +16,12 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-line">
-        <Container className="grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12">
-          <div className="lg:col-span-7">
+      <section className="relative isolate overflow-hidden border-b border-line bg-black lg:min-h-[760px]">
+        <HeroTrident />
+        {/* Shading so the copy stays readable over the animation. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-transparent lg:bg-gradient-to-r lg:from-black/70 lg:from-20% lg:via-black/30 lg:via-45% lg:to-transparent lg:to-60%" />
+        <Container className="relative grid items-center pb-[min(50vh,560px)] pt-20 md:pt-28 lg:min-h-[760px] lg:grid-cols-12 lg:pb-28">
+          <div className="lg:col-span-6">
             <Eyebrow>Technology commercialization &amp; creative agency</Eyebrow>
             <h1 className="mt-6 font-display text-[3.25rem] font-bold leading-[1] tracking-[-0.02em] sm:text-[4.25rem] lg:text-[5.5rem]">
               Beyond the <span className="text-gold">Award.</span>
@@ -38,9 +41,6 @@ export default async function HomePage() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="lg:col-span-5">
-            <HeroTrident className="mx-auto max-w-[440px]" />
           </div>
         </Container>
       </section>
